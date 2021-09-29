@@ -18,32 +18,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv = __importStar(require("dotenv"));
-dotenv.config();
-const config = {
-    "development": {
-        "username": "postgres",
-        "password": process.env.DB_PASSWORD,
-        "database": "jemin_schema",
-        "host": "127.0.0.1",
-        "dialect": "postgres",
-        "operatorsAliases": false
-    },
-    "test": {
-        "username": "postgres",
-        "password": process.env.DB_PASSWORD,
-        "database": "database_test",
-        "host": "127.0.0.1",
-        "dialect": "postgres"
-    },
-    "production": {
-        "username": "postgres",
-        "password": process.env.DB_PASSWORD,
-        "database": "database_production",
-        "host": "127.0.0.1",
-        "dialect": "postgres"
-    }
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.default = config;
-//# sourceMappingURL=config.js.map
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const indexController = __importStar(require("../controller/index"));
+const router = express_1.default.Router();
+router.get('/', indexController.getAll);
+router.post('/', indexController.createUser);
+exports.default = router;
+//# sourceMappingURL=index.js.map

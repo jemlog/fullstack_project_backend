@@ -2,12 +2,13 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.sequelize = void 0;
-var sequelize_1 = require("sequelize");
-var config_1 = __importDefault(require("../config/config"));
-var env = process.env.NODE_ENV || 'development';
-var _a = config_1["default"][env], database = _a.database, username = _a.username, password = _a.password;
-var sequelize = new sequelize_1.Sequelize(database, username, password, config_1["default"][env]);
+const sequelize_1 = require("sequelize");
+const config_1 = __importDefault(require("../config/config"));
+const env = process.env.NODE_ENV || 'development';
+const { database, username, password } = config_1.default[env];
+const sequelize = new sequelize_1.Sequelize(database, username, password, config_1.default[env]);
 exports.sequelize = sequelize;
-exports["default"] = sequelize;
+exports.default = sequelize;
+//# sourceMappingURL=sequelize.js.map

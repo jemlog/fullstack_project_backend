@@ -12,13 +12,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
-var user_1 = __importDefault(require("./user"));
-var post_1 = __importDefault(require("./post"));
-var user_2 = require("./user");
+Object.defineProperty(exports, "__esModule", { value: true });
+const user_1 = __importDefault(require("./user"));
+const post_1 = __importDefault(require("./post"));
+const user_2 = require("./user");
 __exportStar(require("./sequelize"), exports);
-var db = {
-    User: user_1["default"],
-    Post: post_1["default"]
+const db = {
+    User: user_1.default,
+    Post: post_1.default
 };
 (0, user_2.associate)(db);
+//# sourceMappingURL=index.js.map
