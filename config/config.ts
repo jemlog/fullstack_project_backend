@@ -35,7 +35,7 @@ const config: IConfigGroup = {
   "production": {
     "username": "postgres",
     "password": process.env.DB_PASSWORD!,
-    "database": "database_production",
+    "database": "jemin_schema",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

@@ -1,10 +1,22 @@
 import express from 'express';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import morgan from 'morgan';
 import { sequelize } from './models';
 import indexRouter from './router/index'
 const app: express.Application = express();
 
 app.use(express.json())
-
+if(process.env.NODE_ENV==='production')
+{
+  app.use(morgan('combined'))
+  app.use(hpp())
+  app.use(helmet({contentSecurityPolicy:false}))
+}
+else
+{
+  app.use(morgan('dev'))
+}
 
 app.use('/', indexRouter)
 
