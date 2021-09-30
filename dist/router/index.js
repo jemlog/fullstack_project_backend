@@ -24,8 +24,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const indexController = __importStar(require("../controller/index"));
+const limit_1 = __importDefault(require("../middleware/limit"));
 const router = express_1.default.Router();
-router.get('/', indexController.getAll);
-router.post('/', indexController.createUser);
+router.get('/', limit_1.default, indexController.getAll);
+router.post('/', limit_1.default, indexController.createUser);
 exports.default = router;
 //# sourceMappingURL=index.js.map
