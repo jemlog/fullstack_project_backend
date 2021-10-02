@@ -4,31 +4,36 @@ import Post from "./post";
 import {sequelize} from './sequelize'
 
 class User extends Model {
-  public readonly id!: number;
+  public id!: number;
+  public email! : string;
   public nickname!: string;
+  public profile?: string;
   public userId!: string;
   public password!: string;
   public readonly createdAt!: Date;
   public readonly updateAt!: Date;
 
   // 연관관계 
-  public readonly Post?: Post[];
+  public readonly Posts?: Post[];
 
   public getPosts!: HasManyGetAssociationsMixin<Post>
 }
 
 User.init({
-  nickname : {
+  nick : {
     type : DataTypes.STRING(20)
   },
-  userId: {
+  email: {
     type : DataTypes.STRING(20),
-    allowNull : false,
-    unique : true
+    allowNull : false
   },
   password : {
     type : DataTypes.STRING(100),
     allowNull : false
+  },
+  profile : {
+    type : DataTypes.STRING(300),
+    allowNull : true
   }
 },{
   sequelize,

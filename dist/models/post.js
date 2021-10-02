@@ -13,9 +13,14 @@ Post.init({
     description: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: false
+    },
+    image: {
+        type: sequelize_1.DataTypes.STRING(300),
+        allowNull: true
     }
 }, {
     sequelize: sequelize_2.sequelize,
+    timestamps: true,
     modelName: 'Post',
     tableName: 'posts',
     charset: 'utf8',

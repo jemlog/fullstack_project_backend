@@ -8,6 +8,7 @@ class Post extends Model {
   public readonly id!: number;
   public title!: string; 
   public description!: string;
+  public image?: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -25,9 +26,14 @@ Post.init({
   description : {
     type : DataTypes.STRING(100),
     allowNull : false
+  },
+  image : {
+    type : DataTypes.STRING(300),
+    allowNull : true
   }
 },{
   sequelize,
+  timestamps : true,
   modelName : 'Post',
   tableName : 'posts',
   charset : 'utf8',

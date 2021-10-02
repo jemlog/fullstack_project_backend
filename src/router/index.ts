@@ -4,9 +4,9 @@ import rateLimit from '../middleware/limit'
 const router = express.Router()
 
 
+
 router.get('/',rateLimit, indexController.getAll)
 
-router.post('/',rateLimit, indexController.createUser)
 
 
 
