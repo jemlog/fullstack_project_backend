@@ -1,13 +1,12 @@
+import User from '../models/user';
 
-declare global {
-  
-   export namespace Express {
-     interface Request {
-       user?: User;
-     }
-   }
+declare module '*.json' {
+  const value: any;
+  export default value;
 }
 
-export default () => {};
+declare global {
+  interface Error {}
+}
 
-// declare module "express-serve-static-core"{ interface Request {user?: User;}}
+export {};
