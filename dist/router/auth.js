@@ -58,7 +58,7 @@ router.post('/login', auth_1.isNotLoggedIn, (req, res, next) => {
         });
     })(req, res, next);
 });
-router.get('/logout', auth_1.isLoggedIn, (req, res) => {
+router.get('/logout', (req, res) => {
     req.logOut(); // 서버에서 세션이 사라진다. 
     req.session.destroy();
     res.json({

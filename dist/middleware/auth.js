@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isNotLoggedIn = exports.isLoggedIn = void 0;
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
+        console.log('로그인된 상태입니다! ');
         next();
     }
     else {

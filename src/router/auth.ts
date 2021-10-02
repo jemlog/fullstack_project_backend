@@ -65,7 +65,7 @@ router.post('/login',isNotLoggedIn, (req: Request, res:Response, next: NextFunct
   })(req,res,next)
 })
 
-router.get('/logout', isLoggedIn, (req, res) => {
+router.get('/logout',  (req, res) => {
   req.logOut()  // 서버에서 세션이 사라진다. 
   req.session!.destroy()
   res.json({
