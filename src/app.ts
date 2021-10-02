@@ -55,7 +55,6 @@ app.use(session({
     httpOnly : true,
     secure : false
   },
-  proxy : true,
   store : new RedisStore({client : redisClient})
 }))
 
