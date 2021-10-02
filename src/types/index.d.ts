@@ -1,10 +1,11 @@
 
 declare global {
   
-    interface Error {
-      status: number;
-    }
-  
+   export namespace Express {
+     interface Request {
+       user?: User;
+     }
+   }
 }
 
 export default () => {};

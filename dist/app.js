@@ -73,14 +73,12 @@ models_1.sequelize.sync({ force: false }).then(() => console.log('postgresql ser
 // 초기 화면 보여주는 라우터
 app.use((req, res, next) => {
     const error = new Error(`${req.method}${req.url} 라우터가 없습니다.`);
-    error.status = 404;
     logger_1.default.info(error.message);
     next(error);
 });
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
-    res.status(err.status || 500);
     res.render('error');
 });
 app.listen(app.get('port'), () => {

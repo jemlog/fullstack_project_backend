@@ -81,7 +81,7 @@ sequelize.sync({force : false}).then(()=> console.log('postgresql server loading
 
 app.use((req,res,next)=>{
   const error = new Error(`${req.method}${req.url} 라우터가 없습니다.`)
-  error.status = 404;
+
   logger.info(error.message)
   next(error)
 })
@@ -89,7 +89,6 @@ app.use((req,res,next)=>{
 app.use((err: any, req: any,res: any,next: any)=> {
   res.locals.message = err.message; 
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
-  res.status(err.status || 500);
   res.render('error');
 })
 
