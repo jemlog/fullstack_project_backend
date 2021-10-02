@@ -44,7 +44,8 @@ router.post('/login',isNotLoggedIn, (req: Request, res:Response, next: NextFunct
     }     // 애초에 에러가 났을때 
     if(!user)
     {
-      return res.redirect(`/?loginError=${info.message}`)
+      console.log(user)
+      return res.redirect(`/?loginErro=${info.message}`)
     }  // user가 없고 info에 메세지만 담겨 있다면 
     // 성공했을때 
     // req.login 하는 순간 index로 간다. 
@@ -54,7 +55,11 @@ router.post('/login',isNotLoggedIn, (req: Request, res:Response, next: NextFunct
         console.error(loginError)
         return next(loginError)
       }
-      return res.send('로그인 완료')
+      return res.json({
+        code : 200,
+        message : '로그인 완료',
+        success : true
+      })
       // 이 순간 세션쿠키를 브라우저로 보낸다. 
     })
   })(req,res,next)
@@ -63,7 +68,11 @@ router.post('/login',isNotLoggedIn, (req: Request, res:Response, next: NextFunct
 router.get('/logout', isLoggedIn, (req, res) => {
   req.logOut()  // 서버에서 세션이 사라진다. 
   req.session!.destroy()
-  res.send('logout 성공')
+  res.json({
+    code : 204, 
+    success : true, 
+    message : '로그아웃 완료'
+  })
   
 
 })

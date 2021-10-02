@@ -58,7 +58,7 @@ const upload = multer({
 
 // 포스트를 추가하는 컨트롤러 
 
-router.post('/',isLoggedIn ,upload.single('img'), postController.createPost)
+router.post('/',rateLimit, upload.single('img'), postController.createPost)
 
 router.get('/user/:id', isLoggedIn, rateLimit, postController.SelectUserPost)
 

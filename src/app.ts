@@ -4,7 +4,10 @@ dotenv.config()
 import redis from 'redis'
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import cors from 'cors'
 import passportConfig from './passport'
+import nunjucks from 'nunjucks'
+import logger from './logger'
 import connectRedis from 'connect-redis'
 const RedisStore = connectRedis(session)
 import helmet from 'helmet';
@@ -22,7 +25,11 @@ const redisClient = redis.createClient({
   password : process.env.REDIS_PASSWORD
 })
 app.set('port', process.env.PORT || 3005)
-
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+  express: app,
+  watch: true,
+});
 
 passportConfig()
 if(process.env.NODE_ENV==='production')
@@ -38,7 +45,7 @@ else
 app.use('/', express.static('uploads'))
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
-
+app.use(cors({origin : true, credentials : true}))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(session({
   secret : process.env.COOKIE_SECRET!,
@@ -73,12 +80,17 @@ sequelize.sync({force : false}).then(()=> console.log('postgresql server loading
 
 
 app.use((req,res,next)=>{
-  console.log('잘못왔네요')
-  next()
+  const error = new Error(`${req.method}${req.url} 라우터가 없습니다.`)
+  error.status = 404;
+  logger.info(error.message)
+  next(error)
 })
 
 app.use((err: any, req: any,res: any,next: any)=> {
-  console.error(err);
+  res.locals.message = err.message; 
+  res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
+  res.status(err.status || 500);
+  res.render('error');
 })
 
 app.listen(app.get('port'), ()=> {

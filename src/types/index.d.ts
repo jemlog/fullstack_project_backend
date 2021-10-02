@@ -1,12 +1,12 @@
-// import User from "../models/user";
 
-// declare global {
-//   namespace Express {
-//     interface Request {
-//       user?: User;
-//     }
-//   }
-// }
+declare global {
+  
+    interface Error {
+      status: number;
+    }
+  
+}
 
+export default () => {};
 
 // declare module "express-serve-static-core"{ interface Request {user?: User;}}

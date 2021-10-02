@@ -68,7 +68,7 @@ const upload = (0, multer_1.default)({
 // }),limits : { fileSize : 5*1024*1024}
 // })
 // 포스트를 추가하는 컨트롤러 
-router.post('/', auth_1.isLoggedIn, upload.single('img'), postController.createPost);
+router.post('/', limit_1.default, upload.single('img'), postController.createPost);
 router.get('/user/:id', auth_1.isLoggedIn, limit_1.default, postController.SelectUserPost);
 router.put('/:id/user', auth_1.isLoggedIn, limit_1.default, postController.updatePost);
 router.delete('/:id/user', auth_1.isLoggedIn, limit_1.default, postController.deletePost);
