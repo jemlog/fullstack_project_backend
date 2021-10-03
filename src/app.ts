@@ -80,17 +80,17 @@ sequelize.sync({force : false}).then(()=> console.log('postgresql server loading
 
 
 
-app.use((req,res,next)=>{
+app.use((req: express.Request,res: express.Response,next: express.NextFunction)=>{
   const error = new Error(`${req.method}${req.url} 라우터가 없습니다.`)
 
   logger.info(error.message)
   next(error)
 })
 
-app.use((err: any, req: any,res: any,next: any)=> {
+app.use((err: Error, req:express.Request,res:express.Response,next:express.NextFunction )=> {
   res.locals.message = err.message; 
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
-  res.render('error');
+  res.render('error')
 })
 
 app.listen(app.get('port'), ()=> {
