@@ -17,7 +17,7 @@ declare global {
 // POST /    create Post  게시글을 추가하는 부분이다. 
 export async function createPost(req: Request, res:Response, next: NextFunction) {  
   const {title, description} = req.body;
-
+  console.log('일단 post로는 도달했어!')
       const id = req.user ? req.user.id : 0;
       const location  = req.file ? req.file.location : '';
       try{
