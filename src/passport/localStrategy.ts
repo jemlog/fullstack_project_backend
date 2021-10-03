@@ -1,5 +1,5 @@
 import passport from "passport";
-import * as passportLocal from 'passport-local';   // 🧨 이부분 꼭 다시 체크하고 넘어가기 
+import * as passportLocal from 'passport-local'   // 🧨 이부분 꼭 다시 체크하고 넘어가기 
 const LocalStrategy = passportLocal.Strategy;
 import bcrypt from 'bcrypt'
 

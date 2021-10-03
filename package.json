@@ -28,6 +28,7 @@
     "@types/multer-s3": "^2.7.10",
     "@types/nunjucks": "^3.2.0",
     "@types/passport": "^1.0.7",
+    "@types/passport-local": "^1.0.34",
     "@types/pg": "^8.6.1",
     "@types/redis": "^2.8.32",
     "@types/uuid": "^8.3.1",
