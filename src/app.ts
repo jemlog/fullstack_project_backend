@@ -53,8 +53,9 @@ app.use(session({
   saveUninitialized : false,
   cookie : {
     httpOnly : true,
-    secure : false
+    secure : true
   },
+  proxy : true,
   store : new RedisStore({client : redisClient})
 }))
 
