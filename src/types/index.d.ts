@@ -1,12 +1,11 @@
-import User from '../models/user';
-
-declare module '*.json' {
-  const value: any;
-  export default value;
-}
+import IUser from '../models/user';
 
 declare global {
-  interface Error {}
-}
 
-export {};
+    namespace Express {
+
+        export interface User extends IUser {}
+
+    }
+
+}
