@@ -4,7 +4,7 @@ import {Request, Response} from 'express'
 
 const apiLimiter = RateLimit({
   windowMs : 1000* 10, 
-  max : 5, 
+  max : 100, 
   handler(req: Request,res: Response){
     res.status(this.statusCode!).json({
       code : this.statusCode,
