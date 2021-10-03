@@ -4,7 +4,7 @@ import Post from "./post";
 import {sequelize} from './sequelize'
 
 class User extends Model {
-  public id!: number;
+  public id?: number;
   public email! : string;
   public nickname!: string;
   public profile?: string;

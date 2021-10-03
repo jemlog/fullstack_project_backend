@@ -11,8 +11,10 @@ async function createPost(req, res, next) {
     const { title, description } = req.body;
     console.log('일단 post로는 도달했어!');
     const id = req.user?.id;
+    console.log(`===============${id}=============`);
+    const location = req.file ? req.file.location : '';
     try {
-        const post = await post_1.default.create({ title, description, image: req.file?.location, UserId: id });
+        const post = await post_1.default.create({ title, description, image: location, UserId: id });
         res.json({ code: 201, message: post });
     }
     catch (error) {
