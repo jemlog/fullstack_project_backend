@@ -21,7 +21,7 @@ export async function createPost(req: Request, res:Response, next: NextFunction)
       const id = req.user ? req.user.id : 0;
      
       try{
-         const post = await Post.create({title, description, image: req.file?.location ,UserId : req.user?.id})
+         const post = await Post.create({title, description, image: req.file?.location ,UserId : id})
          res.json({code : 201, message : post})
       }
       catch(error)

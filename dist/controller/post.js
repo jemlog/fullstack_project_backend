@@ -11,7 +11,7 @@ async function createPost(req, res, next) {
     const { title, description } = req.body;
     const id = req.user ? req.user.id : 0;
     try {
-        const post = await post_1.default.create({ title, description, image: req.file?.location, UserId: req.user?.id });
+        const post = await post_1.default.create({ title, description, image: req.file?.location, UserId: id });
         res.json({ code: 201, message: post });
     }
     catch (error) {
