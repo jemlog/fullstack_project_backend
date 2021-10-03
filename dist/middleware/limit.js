@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const apiLimiter = (0, express_rate_limit_1.default)({
     windowMs: 1000 * 10,
-    max: 5,
+    max: 100,
     handler(req, res) {
         res.status(this.statusCode).json({
             code: this.statusCode,

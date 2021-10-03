@@ -54,8 +54,9 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: false
+        secure: true
     },
+    proxy: true,
     store: new RedisStore({ client: redisClient })
 }));
 app.use(passport_2.default.initialize());
