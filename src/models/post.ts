@@ -8,10 +8,11 @@ class Post extends Model {
   public readonly id!: number;
   public title!: string; 
   public description!: string;
+  public UserId!: number;
   public image?: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
-
+  
   public readonly User?: User;
   
   public getUser!: BelongsToGetAssociationMixin<User>

@@ -8,7 +8,6 @@ class User extends Model {
   public email! : string;
   public nickname!: string;
   public profile?: string;
-  public userId!: string;
   public password!: string;
   public readonly createdAt!: Date;
   public readonly updateAt!: Date;

@@ -18,10 +18,10 @@ declare global {
 export async function createPost(req: Request, res:Response, next: NextFunction) {  
   const {title, description} = req.body;
   console.log('일단 post로는 도달했어!')
-      const id = req.user ? req.user.id : 0;
-      const location  = req.file ? req.file.location : '';
+      const id = req.user?.id;
+  
       try{
-         const post = await Post.create({title, description, image: location ,UserId : id})
+         const post = await Post.create({title, description, image: req.file?.location ,UserId : id})
          res.json({code : 201, message : post})
       }
       catch(error)

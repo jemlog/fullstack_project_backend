@@ -10,10 +10,9 @@ const user_1 = __importDefault(require("../models/user"));
 async function createPost(req, res, next) {
     const { title, description } = req.body;
     console.log('일단 post로는 도달했어!');
-    const id = req.user ? req.user.id : 0;
-    const location = req.file ? req.file.location : '';
+    const id = req.user?.id;
     try {
-        const post = await post_1.default.create({ title, description, image: location, UserId: id });
+        const post = await post_1.default.create({ title, description, image: req.file?.location, UserId: id });
         res.json({ code: 201, message: post });
     }
     catch (error) {
