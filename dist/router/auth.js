@@ -49,6 +49,7 @@ router.post('/login', auth_1.isNotLoggedIn, (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
+            res.header("Access-Control-Allow-Origin", "*");
             return res.json({
                 code: 200,
                 message: '로그인 완료',

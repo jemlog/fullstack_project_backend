@@ -45,7 +45,7 @@ else
 app.use('/', express.static('uploads'))
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
-app.use(cors({credentials : true}))
+app.use(cors({origin : 'https://jmproject.netlify.app', credentials : true}))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(session({
   secret : process.env.COOKIE_SECRET!,
