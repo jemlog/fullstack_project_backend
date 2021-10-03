@@ -9,6 +9,7 @@ const user_1 = __importDefault(require("../models/user"));
 // POST /    create Post  게시글을 추가하는 부분이다. 
 async function createPost(req, res, next) {
     const { title, description } = req.body;
+    const id = req.user ? req.user.id : 0;
     try {
         const post = await post_1.default.create({ title, description, image: req.file?.location, UserId: req.user?.id });
         res.json({ code: 201, message: post });

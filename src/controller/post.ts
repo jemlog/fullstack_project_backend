@@ -18,7 +18,8 @@ declare global {
 export async function createPost(req: Request, res:Response, next: NextFunction) {  
   const {title, description} = req.body;
 
-  
+      const id = req.user ? req.user.id : 0;
+     
       try{
          const post = await Post.create({title, description, image: req.file?.location ,UserId : req.user?.id})
          res.json({code : 201, message : post})
