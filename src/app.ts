@@ -19,6 +19,7 @@ import indexRouter from './router/index'
 import postRouter from './router/post'
 import fs from 'fs'
 import authRouter from './router/auth'
+import path from 'path';
 const app: express.Application = express();
 const redisClient = redis.createClient({
   url : `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
@@ -26,7 +27,7 @@ const redisClient = redis.createClient({
 })
 app.set('port', process.env.PORT || 3005)
 app.set('view engine', 'html');
-nunjucks.configure('views', {
+nunjucks.configure('src/views', {
   express: app,
   watch: true,
 });
@@ -40,12 +41,13 @@ if(process.env.NODE_ENV==='production')
 }
 else
 {
+//  'https://jmproject.netlify.app'
   app.use(morgan('dev'))
 }
-app.use('/', express.static('uploads'))
+app.use(express.static(path.join(__dirname,'public')))
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
-app.use(cors({origin : 'https://jmproject.netlify.app', credentials : true}))
+app.use(cors({origin : true, credentials : true}))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(session({
   secret : process.env.COOKIE_SECRET!,

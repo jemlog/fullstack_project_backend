@@ -22,7 +22,7 @@ router.post('/join', auth_1.isNotLoggedIn, async (req, res, next) => {
             nick,
             password: hash
         });
-        return res.json({ message: '회원가입 완료' });
+        return res.json({ code: '200', message: '회원가입완료', success: true });
     }
     catch (err) {
         console.error(err);

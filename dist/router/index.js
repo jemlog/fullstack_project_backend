@@ -26,6 +26,9 @@ const express_1 = __importDefault(require("express"));
 const indexController = __importStar(require("../controller/index"));
 const limit_1 = __importDefault(require("../middleware/limit"));
 const router = express_1.default.Router();
-router.get('/', limit_1.default, indexController.getAll);
+router.get('/', (req, res) => {
+    res.render('myPosition.html');
+});
+router.get('/real', limit_1.default, indexController.getAll);
 exports.default = router;
 //# sourceMappingURL=index.js.map

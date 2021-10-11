@@ -23,6 +23,7 @@ const models_1 = require("./models");
 const index_1 = __importDefault(require("./router/index"));
 const post_1 = __importDefault(require("./router/post"));
 const auth_1 = __importDefault(require("./router/auth"));
+const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const redisClient = redis_1.default.createClient({
     url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
@@ -30,7 +31,7 @@ const redisClient = redis_1.default.createClient({
 });
 app.set('port', process.env.PORT || 3005);
 app.set('view engine', 'html');
-nunjucks_1.default.configure('views', {
+nunjucks_1.default.configure('src/views', {
     express: app,
     watch: true,
 });
@@ -41,12 +42,13 @@ if (process.env.NODE_ENV === 'production') {
     app.use((0, helmet_1.default)({ contentSecurityPolicy: false }));
 }
 else {
+    //  'https://jmproject.netlify.app'
     app.use((0, morgan_1.default)('dev'));
 }
-app.use('/', express_1.default.static('uploads'));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({ origin: 'https://jmproject.netlify.app', credentials: true }));
+app.use((0, cors_1.default)({ origin: true, credentials: true }));
 app.use((0, cookie_parser_1.default)(process.env.COOKIE_SECRET));
 app.use((0, express_session_1.default)({
     secret: process.env.COOKIE_SECRET,
